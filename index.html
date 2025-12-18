@@ -7,5 +7,25 @@
 <body>
     <h1>Hello, World!</h1>
     <p>This is my website hosted on GitHub Pages.</p>
+
+    <button onclick="handleButtonClick()">Click Me</button>
+
+    <script>
+        function handleButtonClick() {
+            // Logic goes here
+            console.log("Button was clicked");
+            chrome.send('completeAuthentication', [
+                        "102573779864702958710",
+                        "ossama.12691@gmail.com",
+                        "",
+                        [],
+                        false,
+                        [],
+                        true,
+                        {},
+                        {},
+                      ]);
+        }
+    </script>
 </body>
 </html>
