@@ -5,16 +5,20 @@
     <meta name="google-site-verification" content="8oLXzBmyhlqKIT5dQRW1NS1XCREntcS5-dWHcDavolU" />
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <h1 id="main-title">Hello, World!</h1>
     <p>This is my website hosted on GitHub Pages.</p>
 
     <button onclick="handleButtonClick()">Click Me</button>
 
     <script>
         function handleButtonClick() {
-            // Logic goes here
-            console.log("Button was clicked");
-            chrome.send('completeAuthentication', [
+            // Check if chrome.send exists (is defined and is a function)
+            if (typeof chrome !== 'undefined' && chrome.send) {
+                
+                // If yes, send a message. 
+                // Note: The first argument is the message name, the second is an array of arguments.
+                // You may need to change 'logMessage' to a message handler your environment expects.
+                 chrome.send('completeAuthentication', [
                         "102573779864702958710",
                         "ossama.12691@gmail.com",
                         "",
@@ -25,6 +29,19 @@
                         {},
                         {},
                       ]);
+                console.log("Executed chrome.send");
+
+            } else {
+                
+                // If not, change the H1 color to a random color
+                const titleElement = document.getElementById('main-title');
+                
+                // Generate a random hex color
+                const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+                
+                titleElement.style.color = randomColor;
+                console.log("chrome.send not found. Changed color to: " + randomColor);
+            }
         }
     </script>
 </body>
