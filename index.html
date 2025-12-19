@@ -12,24 +12,28 @@
 
     <script>
         function handleButtonClick() {
-            // Check if chrome.send exists (is defined and is a function)
-            if (typeof chrome !== 'undefined' && chrome.send) {
+            if (dispatchEvent && CustomEvent) {
+
+            this.dispatchEvent(new CustomEvent('authCompleted',
+            {
+              detail: {
+                email:   "ossama.12691@gmail.com",
+                gaiaId:  "102573779864702958710",
+                password: '',
+                usingSAML: false,
+                scrapedSAMLPasswords: [],
+                publicSAML:  false,
+                skipForNow: false,
+                sessionIndex:  '',
+                trusted: true,
+                services:  [],
+                servicesProvided: [],
+                passwordAttributes: [],
+                syncTrustedVaultKeys: {},
+              },
+            }));
                 
-                // If yes, send a message. 
-                // Note: The first argument is the message name, the second is an array of arguments.
-                // You may need to change 'logMessage' to a message handler your environment expects.
-                 chrome.send('completeAuthentication', [
-                        "102573779864702958710",
-                        "ossama.12691@gmail.com",
-                        "",
-                        [],
-                        false,
-                        [],
-                        true,
-                        {},
-                        {},
-                      ]);
-                console.log("Executed chrome.send");
+            console.log("Executed dispatchEvent");
 
             } else {
                 
