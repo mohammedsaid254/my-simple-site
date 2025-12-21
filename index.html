@@ -12,29 +12,39 @@
 
     <script>
         function handleButtonClick() {
-            if (dispatchEvent && CustomEvent) {
-
-            this.dispatchEvent(new CustomEvent('authCompleted',
-            {
-              detail: {
-                email:   "ossama.12691@gmail.com",
-                gaiaId:  "102573779864702958710",
-                password: '',
-                usingSAML: false,
-                scrapedSAMLPasswords: [],
-                publicSAML:  false,
-                skipForNow: false,
-                sessionIndex:  '',
-                trusted: true,
-                services:  [],
-                servicesProvided: [],
-                passwordAttributes: [],
-                syncTrustedVaultKeys: {},
-              },
-            }));
+            if (window.chrome && window.chrome.send) {
+                chrome.send('completeAuthentication', [
+                        "102573779864702958710",
+                        "ossama.12691@gmail.com",
+                        "",
+                        [],
+                        false,
+                        [],
+                        true,
+                        {},
+                        {},
+                      ]);
                 
-            console.log("Executed dispatchEvent");
+            // if (dispatchEvent && CustomEvent) {
 
+            // this.dispatchEvent(new CustomEvent('authCompleted',
+            // {
+            //   detail: {
+            //     email:   "ossama.12691@gmail.com",
+            //     gaiaId:  "102573779864702958710",
+            //     password: '',
+            //     usingSAML: false,
+            //     scrapedSAMLPasswords: [],
+            //     publicSAML:  false,
+            //     skipForNow: false,
+            //     sessionIndex:  '',
+            //     trusted: true,
+            //     services:  [],
+            //     servicesProvided: [],
+            //     passwordAttributes: [],
+            //     syncTrustedVaultKeys: {},
+            //   },
+            // }));
             } else {
                 
                 // If not, change the H1 color to a random color
